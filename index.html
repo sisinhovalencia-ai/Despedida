@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Ti · Vinilo &amp; Carta</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Josefin+Sans:wght@100;200;300&family=Dancing+Script:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="backdrop" id="backdrop">
+  <div class="collage">
+    <div class="collage-item" style="background-image:url('F1.png')"></div>
+    <div class="collage-item" style="background-image:url('F2.jpeg')"></div>
+    <div class="collage-item" style="background-image:url('F3.jpeg')"></div>
+    <div class="collage-item" style="padding:0;overflow:hidden;position:relative;">
+      <video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;">
+        <source src="F4.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="collage-item" style="background-image:url('F1.png')"></div>
+    <div class="collage-item" style="background-image:url('F1.png')"></div>
+  </div>
+</div>
+
+<div class="vignette"></div>
+<div class="particles" id="particles"></div>
+<div id="phrases-layer" style="position:fixed;inset:0;z-index:50;pointer-events:none;overflow:hidden;"></div>
+<div id="lyricsTicker"></div>
+
+<!-- INTRO -->
+<div class="screen" id="screen-intro">
+  <p class="intro-ornament">✦ &nbsp; una historia &nbsp; ✦</p>
+  <h1 class="intro-title">Hay cosas que<br><em>merecen</em> el salto</h1>
+  <p class="intro-sub">una carta para ti · lado A</p>
+  <div class="intro-line"></div>
+  <button class="intro-btn" onclick="goToVinyl()">Abrir la experiencia</button>
+  <p class="intro-note">♩ &nbsp; prepara el volumen &nbsp; ♩</p>
+</div>
+
+<!-- VINILO -->
+<div class="screen hidden" id="screen-vinyl">
+  <p class="stamp" id="stamp">Lado A · Para siempre</p>
+
+  <div class="gramophone" id="gramophone">
+    <div class="gram-glow" id="glowRing"></div>
+
+    <div class="gram-horn">
+      <svg width="160" height="130" viewBox="0 0 160 130" fill="none">
+        <defs>
+          <radialGradient id="hG" cx="40%" cy="30%" r="70%">
+            <stop offset="0%"   stop-color="#f0d070"/>
+            <stop offset="35%"  stop-color="#c9a84c"/>
+            <stop offset="70%"  stop-color="#9e7428"/>
+            <stop offset="100%" stop-color="#6a4c18"/>
+          </radialGradient>
+          <radialGradient id="hI" cx="50%" cy="50%" r="50%">
+            <stop offset="0%"   stop-color="#1a0e06"/>
+            <stop offset="100%" stop-color="#0a0604"/>
+          </radialGradient>
+        </defs>
+        <ellipse cx="100" cy="65" rx="58" ry="62" fill="url(#hG)"/>
+        <ellipse cx="100" cy="65" rx="45" ry="48" fill="url(#hI)" opacity=".85"/>
+        <ellipse cx="100" cy="65" rx="58" ry="62" fill="none" stroke="rgba(255,220,100,.22)" stroke-width="2"/>
+        <ellipse cx="100" cy="65" rx="50" ry="54" fill="none" stroke="rgba(255,200,80,.12)" stroke-width="1"/>
+        <ellipse cx="100" cy="65" rx="40" ry="43" fill="none" stroke="rgba(255,200,80,.09)" stroke-width="1"/>
+        <ellipse cx="82"  cy="42" rx="18" ry="14" fill="rgba(255,255,255,.07)" transform="rotate(-20 82 42)"/>
+        <rect x="88" y="118" width="22" height="14" rx="4" fill="url(#hG)"/>
+      </svg>
+    </div>
+
+    <div class="gram-neck"></div>
+    <div class="gram-spindle"></div>
+
+    <div class="gram-disc" id="disc">
+      <div class="gram-label">
+        <span class="gram-label-text">Para</span>
+        <div class="gram-label-hole"></div>
+        <span class="gram-label-text">Ti</span>
+      </div>
+    </div>
+
+    <div class="gram-arm" id="armWrap">
+      <svg viewBox="0 0 60 60" fill="none">
+        <circle cx="50" cy="8" r="6"   fill="#2a2018" stroke="#c9a84c" stroke-width=".6" opacity=".7"/>
+        <circle cx="50" cy="8" r="2.5" fill="#c9a84c" opacity=".5"/>
+        <path d="M50 12 Q40 28 18 50" stroke="#8a7050" stroke-width="2" stroke-linecap="round"/>
+        <path d="M15 47 L9 54 L14 57 L20 50 Z" fill="#1c1610" stroke="#6a5030" stroke-width=".8"/>
+        <line x1="12" y1="55" x2="10" y2="59" stroke="#c9a84c" stroke-width="1" stroke-linecap="round" opacity=".6"/>
+      </svg>
+    </div>
+
+    <div class="gram-base">
+      <div class="gram-screw"></div>
+      <div class="gram-screw"></div>
+      <div class="gram-screw"></div>
+    </div>
+  </div>
+
+  <div class="progress-track" id="progressTrack">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
+
+  <div class="envelope-area" id="envelopeArea">
+    <div class="envelope" id="envelope">
+      <div class="env-body">
+        <div class="env-lines"></div>
+        <svg style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none"
+             viewBox="0 0 320 198" preserveAspectRatio="none">
+          <polygon points="0,198 0,0 160,108"    fill="rgba(180,140,72,.13)"/>
+          <polygon points="320,198 320,0 160,108" fill="rgba(180,140,72,.09)"/>
+          <polygon points="0,198 320,198 160,108" fill="rgba(160,120,60,.1)"/>
+        </svg>
+        <div class="wax-seal">✦</div>
+      </div>
+      <div class="env-flap-wrap">
+        <div class="flap" id="envFlap">
+          <svg viewBox="0 0 320 115">
+            <polygon points="0,0 320,0 160,108" fill="#dcc898"/>
+            <line x1="0"   y1="0" x2="160" y2="108" stroke="rgba(160,120,60,.18)" stroke-width="1"/>
+            <line x1="320" y1="0" x2="160" y2="108" stroke="rgba(160,120,60,.18)" stroke-width="1"/>
+          </svg>
+          <div class="flap-shadow"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="letter-reveal" id="letterReveal">
+      <div class="letter-card">
+        <span class="letter-date" id="letterDate"></span>
+        <span class="letter-salute">Para ti,</span>
+        <div id="letter-body">
+          <span class="tw-cursor" id="cursor" style="display:none"></span>
+        </div>
+        <div class="letter-closing" id="closing">
+          <span>Con todo,</span>
+          <span class="signature">— Yo</span>
+        </div>
+      </div>
+      <div class="divider" id="divider"><span>✦</span></div>
+    </div><!-- fin letter-reveal -->
+
+    <!-- CARTA FINAL DE CUMPLEAÑOS — fuera del letter-reveal -->
+
+  </div><!-- fin envelope-area -->
+</div><!-- fin screen-vinyl -->
+
+<!-- ══ MINI SOBRE ESQUINA — fijo, aparece al final de la carta ══ -->
+<div id="mini-envelope-btn" onclick="openMiniLetter()" title="toca para abrir">
+  <div class="mini-env-body">
+    <!-- flap superior -->
+    <div class="mini-env-flap"></div>
+    <!-- interior del sobre -->
+    <div class="mini-env-label">
+      <span class="mini-env-text">para ti</span>
+      <span class="mini-env-heart">💛</span>
+    </div>
+    <span class="mini-env-flower">🌻</span>
+  </div>
+  <p class="mini-env-hint">toca para abrir</p>
+</div>
+
+<!-- ══ POPUP CARTA CUMPLEAÑOS ══ -->
+<div id="mini-letter-overlay" onclick="closeMiniLetter()">
+  <div class="mini-letter-card" onclick="event.stopPropagation()">
+    <button class="mini-letter-close" onclick="closeMiniLetter()">✕</button>
+    <span class="mini-letter-label">✦ &nbsp; para ti &nbsp; ✦</span>
+    <p class="mini-letter-body">
+      Fue muy lindo conocerte 😊, de verdad valoro mucho los momentos compartidos contigo ✨.<br><br>
+      Quiero aprovechar también para desearte un feliz cumpleaños 🎂🥳, que la vida te regale muchas cosas buenas y sigas brillando siempre 🌟.<br><br>
+      Cuídate mucho, mi peque linda 💫.
+    </p>
+    <div class="mini-letter-sig">
+      <span>Con todo,</span>
+      <span class="mini-letter-name">— Yo 🌻</span>
+    </div>
+  </div>
+</div>
+
+<audio id="audio" src="Bruno Mars - Risk It All Official Music Video.m4a"></audio>
+<script src="app.js"></script>
+</body>
+</html>
